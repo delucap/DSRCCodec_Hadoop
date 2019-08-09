@@ -55,14 +55,18 @@ public class DsrcCompressor implements Compressor {
     }
     else {
       printf("*********** EXTENSION ACCEPTED *********");
-      //this.porco = new Hello();
-      //porco.sayHello();
+      this.porco = new Hello();
+      printf("NATIVE LIBRARY LOADED!!");
+      porco.sayHello();
+      printf("NATIVE FUNCTION EXECUTED!!");
     }
   }
 
   @Override
   public int compress(byte[] b, int off, int len) throws IOException {
    // System.out.println("len in entrata: "+ len);
+
+    porco = new Hello();
 
     int n = Math.min(len, userBufLen);
     if (userBuf != null && b != null)
@@ -75,8 +79,9 @@ public class DsrcCompressor implements Compressor {
       finished = true;
 
 
-    if(countTask==1)
-    System.out.printf("task "+countTask+" con len = "+len+" ritorno = "+n+"\t nread local = "+nread+"\n");
+    if(countTask<10)
+        printf("Random number return for "+countTask+" task is: "+porco.genRand());
+      // System.out.printf("task "+countTask+" con len = "+len+" ritorno = "+n+"\t nread local = "+nread+"\n");
 
     countTask ++;
 
